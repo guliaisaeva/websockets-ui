@@ -1,5 +1,6 @@
-import { WebSocket, WebSocketServer } from 'ws';
+import { RawData, WebSocket, WebSocketServer } from 'ws';
 import { httpServer } from '../http_server/index';
+import { handleMessage } from './messageHandler';
 
 export const wssetup = new WebSocketServer({ server: httpServer });
 
@@ -13,12 +14,16 @@ wssetup.on('connection', (ws: WebSocket) => {
     }),
   );
 
-  ws.on('message', (message) => {
-    const command = message.toString();
-    console.log(`Received command: ${command}`);
+  ws.on('message', (message: RawData) => {
+    const msgString =
+      typeof message === 'string' ? message : message.toString();
+    console.log('Received message:', msgString);
 
-    const response = { command, result: `Result for command: ${command}` };
-    ws.send(JSON.stringify(response));
+    try {
+      handleMessage(msgString, ws, wssetup);
+    } catch (error) {
+      console.error('Error processing message:', error);
+    }
   });
 
   ws.on('close', () => {

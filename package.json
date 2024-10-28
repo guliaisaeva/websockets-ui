@@ -5,13 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsx  index.js",
+    "start": "tsx index.js",
     "start:dev": "nodemon --exec tsx index.js",
     "build": "tsc",
     "test": "jest"
   },
   "author": "Gulia Isaeva",
-  "keywords": [],
+  "keywords": [
+    "battleship",
+    "nodejs",
+    "websocket"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.8.1",
