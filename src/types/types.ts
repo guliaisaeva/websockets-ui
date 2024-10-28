@@ -6,6 +6,12 @@ export type PersonalResponse = {
 export type RegistrationResponse = {
   status: 'success' | 'error';
   message: string;
+  userId?: string;
+};
+export type LoginResponse = {
+  status: 'success' | 'error';
+  message: string;
+  userId?: string;
 };
 
 export type CreateGameResponse = {
