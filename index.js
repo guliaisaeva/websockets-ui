@@ -1,5 +1,5 @@
 import { httpServer } from './src/http_server/index.ts';
-import { wssetup } from './src/http_server/websocket.ts';
+import { wssetup } from './src/websocket/websocket.ts';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
